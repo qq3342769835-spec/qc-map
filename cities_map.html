@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Cities Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * { margin: 0; padding: 0; }
+        html, body { height: 100%; width: 100%; }
+        #map { height: 100%; width: 100%; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map', {
+            maxBounds: L.latLngBounds(L.latLng(25, -130), L.latLng(50, -60))
+        }).setView([40.5, -75.0], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        L.control.scale().addTo(map);
+        
+        // Style for the outlines
+        var outlineStyle = {
+            color: 'red',
+            weight: 2,
+            dashArray: '5, 5',
+            fill: false
+        };
+        
+        // ============ PHILADELPHIA ============
+        var phi_marker = L.marker([39.9526, -75.1652]).addTo(map);
+        phi_marker.bindPopup('<b>Philadelphia</b>');
+        
+        var phi_downtown = [
+            [39.9626, -75.1752],
+            [39.9426, -75.1752],
+            [39.9426, -75.1552],
+            [39.9626, -75.1552]
+        ];
+        var phi_south = [
+            [39.9426, -75.1752],
+            [39.9026, -75.1752],
+            [39.9026, -75.1352],
+            [39.9426, -75.1352]
+        ];
+        var phi_north = [
+            [39.9626, -75.1752],
+            [40.0326, -75.1752],
+            [40.0326, -75.1052],
+            [39.9626, -75.1052]
+        ];
+        var phi_west = [
+            [39.9626, -75.1552],
+            [39.9426, -75.1552],
+            [39.9426, -75.2352],
+            [39.9626, -75.2352]
+        ];
+        var phi_northeast = [
+            [40.0326, -75.1052],
+            [40.0826, -75.1052],
+            [40.0826, -75.0452],
+            [40.0326, -75.0452]
+        ];
+        
+        L.polygon(phi_downtown, outlineStyle).addTo(map).bindPopup('Downtown Philadelphia');
+        L.polygon(phi_south, outlineStyle).addTo(map).bindPopup('South Philadelphia');
+        L.polygon(phi_north, outlineStyle).addTo(map).bindPopup('North Philadelphia');
+        L.polygon(phi_west, outlineStyle).addTo(map).bindPopup('West Philadelphia');
+        L.polygon(phi_northeast, outlineStyle).addTo(map).bindPopup('Northeast Philadelphia');
+        
+        // ============ NEW YORK CITY ============
+        var ny_marker = L.marker([40.7128, -74.0060]).addTo(map);
+        ny_marker.bindPopup('<b>New York City</b>');
+        
+        var manhattan = [
+            [40.7282, -74.0076],
+            [40.6974, -74.0076],
+            [40.6974, -73.9776],
+            [40.7282, -73.9776]
+        ];
+        var brooklyn = [
+            [40.6974, -74.0076],
+            [40.5730, -74.0076],
+            [40.5730, -73.8776],
+            [40.6974, -73.8776]
+        ];
+        var queens = [
+            [40.7282, -73.9776],
+            [40.5730, -73.9776],
+            [40.5730, -73.7276],
+            [40.7282, -73.7276]
+        ];
+        var bronx = [
+            [40.7282, -73.9776],
+            [40.9100, -73.9776],
+            [40.9100, -73.8276],
+            [40.7282, -73.8276]
+        ];
+        var staten_island = [
+            [40.6974, -74.0876],
+            [40.5430, -74.0876],
+            [40.5430, -74.2476],
+            [40.6974, -74.2476]
+        ];
+        
+        L.polygon(manhattan, outlineStyle).addTo(map).bindPopup('Manhattan');
+        L.polygon(brooklyn, outlineStyle).addTo(map).bindPopup('Brooklyn');
+        L.polygon(queens, outlineStyle).addTo(map).bindPopup('Queens');
+        L.polygon(bronx, outlineStyle).addTo(map).bindPopup('The Bronx');
+        L.polygon(staten_island, outlineStyle).addTo(map).bindPopup('Staten Island');
+        
+        // ============ BOSTON ============
+        var boston_marker = L.marker([42.3601, -71.0589]).addTo(map);
+        boston_marker.bindPopup('<b>Boston</b>');
+        
+        var downtown = [
+            [42.3701, -71.0489],
+            [42.3501, -71.0489],
+            [42.3501, -71.0289],
+            [42.3701, -71.0289]
+        ];
+        var back_bay = [
+            [42.3501, -71.0889],
+            [42.3301, -71.0889],
+            [42.3301, -71.0589],
+            [42.3501, -71.0589]
+        ];
+        var beacon_hill = [
+            [42.3701, -71.0889],
+            [42.3601, -71.0889],
+            [42.3601, -71.0689],
+            [42.3701, -71.0689]
+        ];
+        var south_boston = [
+            [42.3301, -71.0589],
+            [42.3101, -71.0589],
+            [42.3101, -71.0289],
+            [42.3301, -71.0289]
+        ];
+        var cambridge = [
+            [42.3701, -71.1089],
+            [42.3401, -71.1089],
+            [42.3401, -71.0789],
+            [42.3701, -71.0789]
+        ];
+        var brookline = [
+            [42.3301, -71.0989],
+            [42.3001, -71.0989],
+            [42.3001, -71.0589],
+            [42.3301, -71.0589]
+        ];
+        
+        L.polygon(downtown, outlineStyle).addTo(map).bindPopup('Downtown Boston');
+        L.polygon(back_bay, outlineStyle).addTo(map).bindPopup('Back Bay');
+        L.polygon(beacon_hill, outlineStyle).addTo(map).bindPopup('Beacon Hill');
+        L.polygon(south_boston, outlineStyle).addTo(map).bindPopup('South Boston');
+        L.polygon(cambridge, outlineStyle).addTo(map).bindPopup('Cambridge');
+        L.polygon(brookline, outlineStyle).addTo(map).bindPopup('Brookline');
+    </script>
+</body>
+</html>
